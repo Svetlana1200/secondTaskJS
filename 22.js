@@ -26,10 +26,6 @@ function run(query) {
     let partsQuery = query.split(";")
     let line = 1;
 
-    if (partsQuery[partsQuery.length - 1] != ""){
-        syntaxError(partsQuery.length, partsQuery[partsQuery.length - 1].length)
-    }
-
     for (let q of partsQuery) {
         let oneQuery = q
         if (oneQuery.startsWith("Создай")) {
@@ -88,16 +84,16 @@ function createContact(q, line) {
     let ind3 = name.indexOf("Добавь");
     let ind4 = name.indexOf("Покажи");
     if (ind1 != -1) {
-        syntaxError(line, ind1)
+        syntaxError(line + 1, 1)
     }
     if (ind2 != -1) {
-        syntaxError(line, ind2)
+        syntaxError(line + 1, 1)
     }
     if (ind3 != -1) {
-        syntaxError(line, ind3)
+        syntaxError(line + 1, 1)
     }
     if (ind4 != -1) {
-        syntaxError(line, ind4)
+        syntaxError(line + 1, 1)
     }
 
     if (!phoneBook.has(name)) {
@@ -125,16 +121,16 @@ function deleteContact(q, line) {
     let ind3 = name.indexOf("Добавь");
     let ind4 = name.indexOf("Покажи");
     if (ind1 != -1) {
-        syntaxError(line, ind1)
+        syntaxError(line + 1, 1)
     }
     if (ind2 != -1) {
-        syntaxError(line, ind2)
+        syntaxError(line + 1, 1)
     }
     if (ind3 != -1) {
-        syntaxError(line, ind3)
+        syntaxError(line + 1, 1)
     }
     if (ind4 != -1) {
-        syntaxError(line, ind4)
+        syntaxError(line + 1, 1)
     }
     if (phoneBook.has(name)) {
         phoneBook.delete(name)
@@ -161,16 +157,16 @@ function addNumberAndEmail(q, line) {
     let ind3 = name.indexOf("Добавь");
     let ind4 = name.indexOf("Покажи");
     if (ind1 != -1) {
-        syntaxError(line, ind1 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind2 != -1) {
-        syntaxError(line, ind2 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind3 != -1) {
-        syntaxError(line, ind3 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind4 != -1) {
-        syntaxError(line, ind4 + sym)
+        syntaxError(line + 1, 1)
     }
 
     if (phoneBook.has(name)) {
@@ -205,16 +201,16 @@ function deleteNumberAndEmail(q, line) {
     let ind3 = name.indexOf("Добавь");
     let ind4 = name.indexOf("Покажи");
     if (ind1 != -1) {
-        syntaxError(line, ind1 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind2 != -1) {
-        syntaxError(line, ind2 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind3 != -1) {
-        syntaxError(line, ind3 + sym)
+        syntaxError(line + 1, 1)
     }
     if (ind4 != -1) {
-        syntaxError(line, ind4 + sym)
+        syntaxError(line + 1, 1)
     }
 
     if (phoneBook.has(name)) {
