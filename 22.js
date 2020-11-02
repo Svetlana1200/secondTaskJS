@@ -28,14 +28,16 @@ function run(query) {
 
     for (let q of partsQuery) {
         let oneQuery = q
-        if (oneQuery.startsWith("Создай")) {
+        let tokens = q.split(" ");
+           
+        if (tokens[0] == "Создай") {
             createContact(oneQuery, line)
         }
         
-        else if (oneQuery.startsWith("Добавь")) {
+        else if (tokens[0] == "Добавь") {
             addNumberAndEmail(oneQuery, line)
         }
-        else if (oneQuery.startsWith("Покажи")) {
+        else if (tokens[0] == "Покажи") {
             let ans = showNumbersAndEmails(oneQuery, line);
             if (ans) {
                 for (let a of ans) {
@@ -43,17 +45,19 @@ function run(query) {
                 }
             }
         }
-        else if (oneQuery.startsWith("Удали")) {
-            if (oneQuery.startsWith("Удали контакты")) {
+        else if (tokens[0] == "Удали") {
+            if (tokens[1] == "контакты,") {
                 deleteContactWhere(oneQuery, line)
             }
-            else if (oneQuery.startsWith("Удали контакт")) {
+            else if (tokens[1] == "контакт") {
                 deleteContact(oneQuery, line)
             }
             else {
                 deleteNumberAndEmail(oneQuery, line)
             }
         }
+        
+        
         else if (line == partsQuery.length && oneQuery == "") {
 
         }        
@@ -61,6 +65,10 @@ function run(query) {
         else {
             syntaxError(line, 1);
         }
+
+        if (line == partsQuery.length && oneQuery != "") {
+            syntaxError(line, oneQuery.length + 1);
+        }   
         line ++;
     }
     return answers;
@@ -437,7 +445,6 @@ function deleteContactWhere(q, line) {
     }
     i ++;
     sym += "есть".length + 1;
-    i++;
     let query = tokens.slice(i).join(" ")
     if (query.length != 0) {
         let shouldDelete = [];
@@ -481,7 +488,9 @@ function isValidEmail(email) {
 module.exports = { phoneBook, run };
 
 
-console.log(run('Создай контакт ГригорийУдали контакт Григорий;'))
+console.log(run(
+    'Покажи имя для контактов, где есть ий;'
+))
 
 
 
